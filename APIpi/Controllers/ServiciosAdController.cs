@@ -2,6 +2,10 @@
 using APIpi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace APIpi.Controllers
 {
@@ -9,17 +13,13 @@ namespace APIpi.Controllers
     [Route("[controller]")]
     public class ServiciosAdController : ControllerBase
     {
-        
         private readonly ILogger<ServiciosAdController> _logger;
         private readonly AppDbContext _context;
 
+        // Solo mantenemos un constructor que acepta ambos parámetros
         public ServiciosAdController(ILogger<ServiciosAdController> logger, AppDbContext context)
         {
             _logger = logger;
-            _context = context;
-        }
-        public ServiciosAdController(AppDbContext context)
-        {
             _context = context;
         }
 
