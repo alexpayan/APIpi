@@ -17,6 +17,7 @@ namespace APIpi.Controllers
             _logger = logger;
             _context = context;
         }
+        
         [HttpPost(Name = "PostEventos")]
         public async Task<ActionResult<PostEventosResponse>> Post(PostEventosRequest request)
         {
@@ -40,21 +41,21 @@ namespace APIpi.Controllers
                 Hora_Evento = eventos.Hora_Evento,
                 Número_Personas = eventos.Número_Personas,
                 ID_Usuario = eventos.ID_Usuario,
-                ID_Locacion = eventos.ID_Locacion,
-                usuario = eventos.Usuario,
-                locacion = eventos.Locacion
+                ID_Locacion = eventos.ID_Locacion
             };
             return CreatedAtAction(nameof(GetById), new { id = eventos.ID_Evento }, response);
         }
+        
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetEventosResponse>> GetById(int id)
+        public async Task<ActionResult<GetEventoResponse>> GetById(int id)
         {
             var eventos = await _context.Eventos.FindAsync(id);
             if (eventos == null)
             {
                 return NotFound();
             }
-            var response = new GetEventosResponse
+
+            var response = new GetEventoResponse
             {
                 ID_Evento = eventos.ID_Evento,
                 Tipo_Evento = eventos.Tipo_Evento,
@@ -62,64 +63,62 @@ namespace APIpi.Controllers
                 Hora_Evento = eventos.Hora_Evento,
                 Número_Personas = eventos.Número_Personas,
                 ID_Usuario = eventos.ID_Usuario,
-                ID_Locacion = eventos.ID_Locacion,
-                usuario = eventos.Usuario,
-                locacion = eventos.Locacion
+                ID_Locacion = eventos.ID_Locacion
             };
+
             return Ok(response);
         }
+        
         [HttpGet(Name = "GetAllEventos")]
-        public async Task<ActionResult<IEnumerable<GetEventosResponse>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Eventos>>> GetAll()
         {
-            var eventos = await _context.Eventos.ToListAsync();
-            var response = eventos.Select(e => new GetEventosResponse
+            var eventos = await _context.Eventos.Select(evento => new GetEventoResponse
             {
-                ID_Evento = e.ID_Evento,
-                Tipo_Evento = e.Tipo_Evento,
-                Fecha_Evento = e.Fecha_Evento,
-                Hora_Evento = e.Hora_Evento,
-                Número_Personas = e.Número_Personas,
-                ID_Usuario = e.ID_Usuario,
-                ID_Locacion =e.ID_Locacion,
-                usuario =e.Usuario,
-                locacion =e.Locacion
-            }).ToList();
-            return Ok(response);
+                ID_Evento = evento.ID_Evento,
+                Tipo_Evento = evento.Tipo_Evento,
+                Fecha_Evento = evento.Fecha_Evento,
+                Hora_Evento = evento.Hora_Evento,
+                Número_Personas = evento.Número_Personas,
+                ID_Usuario = evento.ID_Usuario,
+                ID_Locacion = evento.ID_Locacion
+            }).ToListAsync();
+
+            return Ok(eventos);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<PutEventosResponse>> Put(int id, PutEventosRequest request)
         {
-            var eventoUptade = await _context.Eventos.FindAsync(id);
-            if (eventoUptade == null)
+            var eventoToUpdate = new Eventos
             {
-                return NotFound();
-            }
-            eventoUptade.ID_Evento = request.ID_Evento;
-            eventoUptade.Tipo_Evento = request.Tipo_Evento;
-            eventoUptade.Fecha_Evento = request.Fecha_Evento;
-            eventoUptade.Hora_Evento = request.Hora_Evento;
-            eventoUptade.Número_Personas = request.Número_Personas;
-            eventoUptade.ID_Usuario = request.ID_Usuario;
-            eventoUptade.ID_Locacion = request.ID_Locacion;
+                ID_Evento = id,
+                Tipo_Evento = request.Tipo_Evento,
+                Fecha_Evento = request.Fecha_Evento,
+                Hora_Evento = request.Hora_Evento,
+                Número_Personas = request.Número_Personas,
+                ID_Usuario = request.ID_Usuario,
+                ID_Locacion = request.ID_Locacion,
+            };
 
-            _context.Eventos.Update(eventoUptade);
+            _context.Eventos.Update(eventoToUpdate);
             await _context.SaveChangesAsync();
+
+            var updatedEvento = await _context.Eventos.FindAsync(id);
 
             var response = new PutEventosResponse
             {
-                ID_Evento = eventoUptade.ID_Evento,
-                Tipo_Evento = eventoUptade.Tipo_Evento,
-                Fecha_Evento = eventoUptade.Fecha_Evento,
-                Hora_Evento = eventoUptade.Hora_Evento,
-                Número_Personas = eventoUptade.Número_Personas,
-                ID_Usuario = eventoUptade.ID_Usuario,
-                ID_Locacion = eventoUptade.ID_Locacion,
-                locacion = eventoUptade.Locacion,
-                usuario = eventoUptade.Usuario
+                ID_Evento = updatedEvento.ID_Evento,
+                Tipo_Evento = updatedEvento.Tipo_Evento,
+                Fecha_Evento = updatedEvento.Fecha_Evento,
+                Hora_Evento = updatedEvento.Hora_Evento,
+                Número_Personas = updatedEvento.Número_Personas,
+                ID_Usuario = updatedEvento.ID_Usuario,
+                ID_Locacion = updatedEvento.ID_Locacion,
             };
+
             return Ok(response);
         }
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -130,7 +129,6 @@ namespace APIpi.Controllers
             }
             _context.Eventos.Remove(evento);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
     }

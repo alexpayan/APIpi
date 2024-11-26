@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using APIpi.Model;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace APIpi.Controllers.EventosTypes
 {
-    public class GetEventosResponse
+    public class GetEventoResponse
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID_Evento { get; set; }
 
         [Required, MaxLength(50)]
@@ -16,7 +15,7 @@ namespace APIpi.Controllers.EventosTypes
         public DateOnly Fecha_Evento { get; set; }
 
         [Required]
-        public TimeOnly Hora_Evento { get; set; }
+        public TimeSpan Hora_Evento { get; set; }
 
         [Required]
         public int Número_Personas { get; set; }
@@ -26,10 +25,5 @@ namespace APIpi.Controllers.EventosTypes
 
         [Required]
         public int ID_Locacion { get; set; }
-
-        [ForeignKey("usuario")]
-        public Usuario usuario { get; set; }
-        [ForeignKey("locacion")]
-        public Locacion locacion { get; set; }
     }
 }
