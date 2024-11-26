@@ -9,6 +9,7 @@ namespace APIpi.Model
         public DbSet<Locacion> Locaciones { get; set; }
         public DbSet<ServiciosAdicionales> Servicios_Adicionales { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<Eventos> Eventos { get; set; }
 
         // Agreagar clase que representa cada tabla en el folder de Model
         // Agregar public DbSet<NombreDeLaClase> NombreDeLaTabla { get; set; } aqui por cada tabla
