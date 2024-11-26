@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Model
 {
@@ -10,8 +11,9 @@ namespace APIpi.Model
         public int ID_Evento { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Tipo_Evento { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public TipoDeEvento Tipo_Evento { get; set; }
 
         [Required]
         public DateOnly Fecha_Evento { get; set; }

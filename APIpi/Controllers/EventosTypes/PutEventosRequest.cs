@@ -1,14 +1,17 @@
 ﻿using APIpi.Model;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Controllers.EventosTypes
 {
     public class PutEventosRequest
     {
-        [Required, MaxLength(50)]
-        public string Tipo_Evento { get; set; }
-        
+        [Required]
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public TipoDeEvento Tipo_Evento { get; set; }
+
         [Required]
         public DateOnly Fecha_Evento { get; set; }
         
