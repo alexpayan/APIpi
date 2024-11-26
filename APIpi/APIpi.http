@@ -1,6 +1,152 @@
 @APIpi_HostAddress = http://localhost:5053
 
-GET {{APIpi_HostAddress}}/weatherforecast/
-Accept: application/json
+### Get all Eventos
+GET {{APIpi_HostAddress}}/Eventos
+Content-Type: application/json
 
-###
+### Get a single Evento by ID
+GET {{APIpi_HostAddress}}/Eventos/1
+Content-Type: application/json
+
+### Create a new Evento
+POST {{APIpi_HostAddress}}/Eventos
+Content-Type: application/json
+
+{
+  "tipo_Evento": "Boda",
+  "fecha_Evento": "2024-11-01",
+  "hora_Evento": "15:00:00",
+  "número_Personas": 150,
+  "iD_Usuario": 1,
+  "iD_Locacion": 2
+}
+
+### Update an Evento by ID
+PUT {{APIpi_HostAddress}}/Eventos/1
+Content-Type: application/json
+
+{
+  "iD_Evento": 1,
+  "tipo_Evento": "Aniversario",
+  "fecha_Evento": "2024-11-15",
+  "hora_Evento": "18:00:00",
+  "número_Personas": 200,
+  "iD_Usuario": 1,
+  "iD_Locacion": 3
+}
+
+### Delete an Evento by ID
+DELETE {{APIpi_HostAddress}}/Eventos/1
+Content-Type: application/json
+
+
+### Get all Locaciones
+GET {{APIpi_HostAddress}}/Locacion
+Content-Type: application/json
+
+### Get a single Locacion by ID
+GET {{APIpi_HostAddress}}/Locacion/1
+Content-Type: application/json
+
+### Create a new Locacion
+POST {{APIpi_HostAddress}}/Locacion
+Content-Type: application/json
+
+{
+  "nombre_Locacion": "Salón de Fiestas",
+  "tipo_Locacion": "Playa",
+  "capacidad_Maxima": 300,
+  "dirección": "123 Fiesta Ave",
+  "precio_Base": 5000.00
+}
+
+### Update a Locacion by ID
+PUT {{APIpi_HostAddress}}/Locacion/1
+Content-Type: application/json
+
+{
+  "nombre_Locacion": "Salón de Fiestas Renovado",
+  "tipo_Locacion": 1,
+  "capacidad_Maxima": 350,
+  "dirección": "123 Fiesta Ave, Renovada",
+  "precio_Base": 6000.00
+}
+
+### Delete a Locacion by ID
+DELETE {{APIpi_HostAddress}}/Locacion/1
+Content-Type: application/json
+
+### Get all ServiciosAd
+GET {{APIpi_HostAddress}}/ServiciosAd
+Content-Type: application/json
+
+### Get a single ServicioAd by ID
+GET {{APIpi_HostAddress}}/ServiciosAd/1
+Content-Type: application/json
+
+### Create a new ServicioAd
+POST {{APIpi_HostAddress}}/ServiciosAd
+Content-Type: application/json
+
+{
+  "nombre_Servicio": "Música en Vivo",
+  "precio_Servicio": 1500.00,
+  "descripción": "Banda en vivo para eventos",
+  "teléfono": "555-1234"
+}
+
+### Update a ServicioAd by ID
+PUT {{APIpi_HostAddress}}/ServiciosAd/1
+Content-Type: application/json
+
+{
+  "nombre_Servicio": "Fotografía",
+  "precio_Servicio": 1200.00,
+  "descripción": "Fotógrafo profesional para eventos",
+  "teléfono": "555-5678"
+}
+
+### Delete a ServicioAd by ID
+DELETE {{APIpi_HostAddress}}/ServiciosAd/1
+Content-Type: application/json
+
+### Get all Users
+GET {{APIpi_HostAddress}}/User
+Content-Type: application/json
+
+### Get a single User by ID
+GET {{APIpi_HostAddress}}/User/1
+Content-Type: application/json
+
+### Create a new User
+POST {{APIpi_HostAddress}}/User
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "correo_Electrónico": "juan.perez@example.com",
+  "contraseña": "password123",
+  "teléfono": "555-9876",
+  "dirección": "Calle 123",
+  "tipo": "Admin"
+}
+
+### Update a User by ID
+PUT {{APIpi_HostAddress}}/User/1
+Content-Type: application/json
+
+{
+  "iD_Usuario": 1,
+  "nombre": "Juan",
+  "apellido": "Lopez",
+  "correo_Electrónico": "juan.lopez@example.com",
+  "contraseña": "newpassword123",
+  "teléfono": "555-6543",
+  "dirección": "Calle 456",
+  "tipo": "Admin"
+}
+
+### Delete a User by ID
+DELETE {{APIpi_HostAddress}}/User/1
+Content-Type: application/json
