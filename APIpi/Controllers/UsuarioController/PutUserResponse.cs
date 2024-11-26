@@ -35,6 +35,8 @@ namespace APIpi.Controllers.UsuarioController
         public string Dirección { get; set; }
 
         [Required]
-        public string Tipo { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public TipoDeUsuario Tipo { get; set; }
     }
 }

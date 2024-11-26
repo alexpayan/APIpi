@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using APIpi.Model;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Controllers.UsuarioController
 {
@@ -32,6 +34,8 @@ namespace APIpi.Controllers.UsuarioController
         public string Dirección { get; set; }
 
         [Required]
-        public string Tipo { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public TipoDeUsuario Tipo { get; set; }
     }
 }
