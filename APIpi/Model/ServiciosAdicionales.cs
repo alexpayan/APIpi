@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Model
 {
@@ -10,8 +11,9 @@ namespace APIpi.Model
         public int ID_Servicio { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public string Nombre_Servicio { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public TipoDeServicioAd Nombre_Servicio { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(10,2)")]
