@@ -66,7 +66,7 @@ namespace APIpi.Controllers
             return Ok(response);
         }
 
-        [HttpGet(Name = "GetAllAgendas")]
+        [HttpGet(Name = "GetAllFacturas")]
         public async Task<ActionResult<IEnumerable<Facturas>>> GetAll()
         {
             var facturas = await _context.Facturas.Select(factura => new GetFacturasResponse
