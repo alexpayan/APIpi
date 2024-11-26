@@ -7,12 +7,12 @@ namespace APIpi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EventosControllers : ControllerBase
+    public class EventosController : ControllerBase
     {
-        private readonly ILogger<EventosControllers> _logger;
+        private readonly ILogger<EventosController> _logger;
         private readonly AppDbContext _context;
 
-        public EventosControllers(ILogger<EventosControllers> logger, AppDbContext context)
+        public EventosController(ILogger<EventosController> logger, AppDbContext context)
         {
             _logger = logger;
             _context = context;
