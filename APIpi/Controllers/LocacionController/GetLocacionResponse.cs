@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace APIpi.Controllers.LocacionTypes
 {
-    public class GetLocacionResponse
+    public class GetEventosResponse
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
