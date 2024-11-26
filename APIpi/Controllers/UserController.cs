@@ -1,6 +1,4 @@
-﻿
-using APIpi.Controllers.ServiciosAdTypes;
-using APIpi.Controllers.UsuarioController;
+﻿using APIpi.Controllers.UsuarioController;
 using APIpi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +7,8 @@ namespace APIpi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-
     public class UserController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<UserController> _logger;
         private readonly AppDbContext _context;
 
@@ -60,15 +52,15 @@ namespace APIpi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Usuario>> GetById(int id)
         {
-            _logger.LogInformation($"Fetching locacion with id [{id}] from the data base...");
+            _logger.LogInformation($"Fetching user with id [{id}] from the data base...");
             var usuario = await _context.Usuario.FindAsync(id);
             if (usuario == null)
             {
-                _logger.LogWarning($"Locacion with id [{id}] was not found");
+                _logger.LogWarning($"User with id [{id}] was not found");
                 return NotFound();
             }
 
-            _logger.LogInformation($"Found locacion with id [{id}]");
+            _logger.LogInformation($"Found user with id [{id}]");
             var response = new Usuario
             {
                 ID_Usuario = usuario.ID_Usuario,

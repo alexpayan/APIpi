@@ -3,7 +3,6 @@ using APIpi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace APIpi.Controllers
 {
     [ApiController]
