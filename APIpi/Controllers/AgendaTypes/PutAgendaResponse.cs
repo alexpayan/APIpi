@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using APIpi.Model;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Controllers.AgendaTypes
 {
@@ -18,7 +20,8 @@ namespace APIpi.Controllers.AgendaTypes
         public DateOnly? Fecha_Confirmación { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Estado_Reserva { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public EstadoDeReserva Estado_Reserva { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using APIpi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Controllers
 {
