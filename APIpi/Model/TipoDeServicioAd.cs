@@ -13,7 +13,6 @@ namespace APIpi.Model
         Murga,
         Música_en_Vivo,
         Animadores,
-        Payasos,
-        Baño_Portátil
+        Payasos
     }
 }
