@@ -25,7 +25,7 @@ namespace APIpi.Controllers
             var servicio = new DetallesServicios
             {
               Notas_Adicionales = request.Notas_Adicionales,
-              ID_Eventos = request.ID_Eventos,
+              ID_Evento = request.ID_Eventos,
               ID_Servicio = request.ID_Servicio
             };
             _context.Detalles_Servicios.Add(servicio);
@@ -35,7 +35,7 @@ namespace APIpi.Controllers
             {
                 ID_Detalles_Servicios =servicio.ID_Detalles_Servicios,
                 Notas_Adicionales = servicio.Notas_Adicionales,
-                ID_Eventos = servicio.ID_Eventos,
+                ID_Eventos = servicio.ID_Evento,
                 ID_Servicio = servicio.ID_Servicio
             };
             return CreatedAtAction(nameof(GetById), new { id = servicio.ID_Detalles_Servicios }, response);
@@ -54,7 +54,7 @@ namespace APIpi.Controllers
             {
                 ID_Detalles_Servicios = servicio.ID_Detalles_Servicios,
                 Notas_Adicionales = servicio.Notas_Adicionales,
-                ID_Eventos = servicio.ID_Eventos,
+                ID_Eventos = servicio.ID_Evento,
                 ID_Servicio = servicio.ID_Servicio
             };
 
@@ -68,7 +68,7 @@ namespace APIpi.Controllers
             {
                 ID_Detalles_Servicios = servicio.ID_Detalles_Servicios,
                 Notas_Adicionales = servicio.Notas_Adicionales,
-                ID_Eventos = servicio.ID_Eventos,
+                ID_Eventos = servicio.ID_Evento,
                 ID_Servicio = servicio.ID_Servicio
             }).ToListAsync();
 
@@ -82,7 +82,7 @@ namespace APIpi.Controllers
             {
                 ID_Detalles_Servicios = id,
                 Notas_Adicionales = request.Notas_Adicionales,
-                ID_Eventos = request.ID_Eventos,
+                ID_Evento = request.ID_Eventos,
                 ID_Servicio = request.ID_Servicio
             };
 
@@ -95,7 +95,7 @@ namespace APIpi.Controllers
             {
                 ID_Detalles_Servicios = id,
                 Notas_Adicionales = updatedDetServi.Notas_Adicionales,
-                ID_Eventos = updatedDetServi.ID_Eventos,
+                ID_Eventos = updatedDetServi.ID_Evento,
                 ID_Servicio = updatedDetServi.ID_Servicio
             };
 

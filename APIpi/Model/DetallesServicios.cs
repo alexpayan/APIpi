@@ -19,7 +19,7 @@ namespace APIpi.Model
 
         [Required]
         [ForeignKey("evento")]
-        public int ID_Eventos { get; set; }
+        public int ID_Evento { get; set; }
 
         public ServiciosAdicionales servicio { get; set; }
 
