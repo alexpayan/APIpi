@@ -17,8 +17,10 @@ namespace APIpi.Controllers.FacturasTypes
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public MetodoDePago Método_Pago { get; set; }
 
-        [Required, MaxLength(50)]
-        public string Estado_Pago { get; set; }
+        [Required]
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public EstadoDePago Estado_Pago { get; set; }
 
         [Required, Column(TypeName = "decimal(10,2)")]
         public decimal Monto_Total { get; set; }

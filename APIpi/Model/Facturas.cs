@@ -20,8 +20,9 @@ namespace APIpi.Model
         public MetodoDePago Método_Pago { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Estado_Pago { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public EstadoDePago Estado_Pago { get; set; }
 
         [Required]
         [ForeignKey("evento")]
