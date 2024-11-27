@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace APIpi.Model
 {
@@ -14,8 +15,9 @@ namespace APIpi.Model
         public DateOnly Fecha_Factura { get; set; } //verificar si este tipo de dato estaa correcto
 
         [Required]
-        [MaxLength(50)]
-        public string Método_Pago { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public MetodoDePago Método_Pago { get; set; }
 
         [Required]
         [MaxLength(50)]
